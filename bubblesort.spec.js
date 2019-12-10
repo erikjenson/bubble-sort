@@ -15,6 +15,16 @@ describe('Bubble Sort', function() {
     it('does not use the javascript sort function', function() {
       expect(Array.prototype.sort.calls.count()).toEqual(0);
     });
-    
+
+    spyOn(Window, 'swap').and.callThrough();
+    const output = Window.swap(2, 4, [4, 2], 0);
+
+    it('tracks that swap was called', function() {
+      expect(Window.swap).toHaveBeenCalled();
+    });
+
+    it('when called returns swapped value', function() {
+      expect(output.toEqual([2, 4]));
+    });
   });
 });

@@ -1,8 +1,6 @@
 function swap(a, b, arr, index) {
-  if (a < b) {
-    arr[index] = a;
-    arr[index + 1] = b;
-  }
+  arr[index] = a;
+  arr[index + 1] = b;
 }
 
 function bubbleSort(arr) {
@@ -13,7 +11,10 @@ function bubbleSort(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
       let currentElement = arr[i];
       let nextElement = arr[i + 1];
-      swap(nextElement, currentElement, arr, i);
+      if (nextElement < currentElement) {
+        swap(nextElement, currentElement, arr, i);
+        counter++;
+      }
     }
     if (counter === 0) {
       isSorted = true;
